@@ -66,6 +66,6 @@ def passwordHex(password):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     url = "https://www.abooky.com/member.php"
-    username = ""
-    password = ""
+    username = "" #账号
+    password = "" #密码
     loginin(url, username, passwordHex(password))
