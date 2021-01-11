@@ -43,7 +43,7 @@ def loginin(url, username, password):
                               'inajax': 1}, data=post_data, headers=headers)
 
     # 获取签到页面的formhash
-    r = session.get(url='https://www.abooky.com/plugin.php?id=k_misign:sign')
+    r = session.get(url='https://www.abooky.com/plugin.php?id=k_misign:sign').text
     formhash = re.search(r'<input type="hidden" name="formhash" value="(.+?)" />', r).group(1).encode('ascii')
 
     # 执行签到
