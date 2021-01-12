@@ -1,5 +1,5 @@
 # abooky
-abooky阅次元自动签到
+abooky阅次元discuz自动签到
 
 ## 安装依赖
 ```
