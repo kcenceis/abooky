@@ -13,6 +13,23 @@ headers = {
 }
 session = requests.session()
 
+username = ""  # 账号
+password = ""  # 密码
+
+# Server酱推送SCKEY
+SCKEY = ""
+
+
+def ServerChanPush():
+    if len(SCKEY) > 0:
+        serverchan_url = "http://sc.ftqq.com/" + SCKEY + ".send"
+        # 推送标题
+        text = 'abooky.com'
+        # 推送内容
+        desp = '已签到'
+        requests.get(url=serverchan_url, params={'text': text,
+                                                 'desp': desp})
+
 
 def loginin(url, username, password):
     r = session.get(url, params={"referer": '',
@@ -55,17 +72,15 @@ def loginin(url, username, password):
               'inajax': 1,
               'ajaxtarget': 'JD_sign'}
     checkin = session.get(url=url, params=params, headers=headers)
-    print(checkin.text)
+    if checkin.status_code == 200:
+        print("签到成功")
+        ServerChanPush()
 
 
 # 加密密码
 def passwordHex(password):
     return hashlib.md5(password.encode("utf-8")).hexdigest()
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     url = "https://www.abooky.com/member.php"
-    username = "" #账号
-    password = "" #密码
     loginin(url, username, passwordHex(password))
